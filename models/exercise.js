@@ -6,32 +6,27 @@ const exerciseSchema = new Schema({
     type: {
         type: String,
         trim: true,
-        required: "Enter a name for transaction"
+        required: "Please choose cardio or resistance"
     },
     name: {
         type: String,
         trim: true,
-        required: "Enter a name for transaction"
+        required: "Enter a name for the exercise"
     },
     weight: {
         type: Number,
-        required: "Enter an amount"
     },
     sets: {
         type: Number,
-        required: "Enter an amount"
     },
     reps: {
         type: Number,
-        required: "Enter an amount"
     },
     distance: {
         type: Number,
-        required: "Enter an amount"
     },
     duration: {
         type: Number,
-        required: "Enter an amount"
     },
 });
 
