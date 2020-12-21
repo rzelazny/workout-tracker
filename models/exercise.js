@@ -25,6 +25,10 @@ const exerciseSchema = new Schema({
         type: Number,
         required: "Enter an amount"
     },
+    distance: {
+        type: Number,
+        required: "Enter an amount"
+    },
     duration: {
         type: Number,
         required: "Enter an amount"
