@@ -30,8 +30,9 @@ router.post("/api/workouts", ({ body }, res) => {
 //Add exercise data to a workout
 router.put("/api/workouts/:id", ({ body }, res) => {
     console.log("api PUT workouts running");
-    console.log(body);
-    db.Workout.insertMany(body)
+
+    db.Exercise.create(body)
+        .then(({ _id }) => db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
