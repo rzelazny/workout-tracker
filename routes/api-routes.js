@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 
+//Get existing workout data
 router.get("/api/workouts", (req, res) => {
     console.log("api GET workouts running");
     db.Workout.find({})
@@ -13,9 +14,11 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 
+//Create a new workout session
 router.post("/api/workouts", ({ body }, res) => {
     console.log("api POST workouts running");
-    db.Workout.create(body)
+    console.log(body);
+    db.Workout.create({body})
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
@@ -24,8 +27,10 @@ router.post("/api/workouts", ({ body }, res) => {
         });
 });
 
-router.put("/api/workouts", ({ body }, res) => {
+//Add exercise data to a workout
+router.put("/api/workouts/:id", ({ body }, res) => {
     console.log("api PUT workouts running");
+    console.log(body);
     db.Workout.insertMany(body)
         .then(dbWorkout => {
             res.json(dbWorkout);
