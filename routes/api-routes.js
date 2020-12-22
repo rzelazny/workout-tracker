@@ -5,7 +5,7 @@ const db = require("../models");
 router.get("/api/workouts", (req, res) => {
     console.log("api GET workouts running");
     db.Workout.find({})
-        .populate("exercises")
+        //.populate("exercises")
         .sort({ date: -1 })
         .then(dbWorkout => {
             res.json(dbWorkout);
@@ -33,7 +33,7 @@ router.put("/api/workouts/:id", ({ body, params}, res) => {
     console.log("api PUT workouts running");
     console.log(params);
     db.Exercise.create(body)
-        .then(({ _id }) => db.Workout.findOneAndUpdate({ _id: params }, { $push: { exercises: _id } }, { new: true }))
+        .then(({ myId }) => db.Workout.findOneAndUpdate({ _id: params }, { $push: { exercises: myId } }, { new: true }))
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
