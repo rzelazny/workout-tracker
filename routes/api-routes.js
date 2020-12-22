@@ -5,12 +5,13 @@ const db = require("../models");
 router.get("/api/workouts", (req, res) => {
     console.log("api GET workouts running");
     db.Workout.find({})
+        .sort({ date: 1 })
         //.populate("exercises")
-        .sort({ date: -1 })
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
         .catch(err => {
+            console.log(err);
             res.status(400).json(err);
         });
 });
@@ -24,20 +25,22 @@ router.post("/api/workouts", ({ body }, res) => {
             res.json(dbWorkout);
         })
         .catch(err => {
+            console.log(err);
             res.status(400).json(err);
         });
 });
 
 //Add exercise data to a workout
-router.put("/api/workouts/:id", ({ body, params}, res) => {
+router.put("/api/workouts/:id", (req, res) => {
     console.log("api PUT workouts running");
-    console.log(params);
-    db.Exercise.create(body)
-        .then(({ myId }) => db.Workout.findOneAndUpdate({ _id: params }, { $push: { exercises: myId } }, { new: true }))
+    console.log(req.params);
+    db.Exercise.create(req.body)
+        .then(({ _id }) => db.Workout.findOneAndUpdate({ _id: req.params.id }, { $push: { exercises: _id } }, { new: true }))
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
         .catch(err => {
+            console.log(err);
             res.status(400).json(err);
         });
 });
