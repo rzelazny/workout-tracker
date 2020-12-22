@@ -7,7 +7,7 @@ router.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-//path for getting exercise data
+//path for adding an exercise
 router.get("/exercise", function(req, res) {
     console.log("html get exercise");
     res.sendFile(path.join(__dirname, "../public/exercise.html"));
