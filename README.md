@@ -34,6 +34,9 @@ Check the status page to see how your workouts have trended over time.
 
 For a Heroku installation, in a browser navigate to the app page. Start a new workout and add exercises. Check the status page to see how your workouts have trended over time. 
 
+Deployed to Heroku [here](https://fitness-tracker-rzelazny.herokuapp.com/)
+
+
 ## License
 
 This repo is licenced under the MIT license.
