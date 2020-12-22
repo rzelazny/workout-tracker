@@ -5,6 +5,7 @@ const db = require("../models");
 router.get("/api/workouts", (req, res) => {
     console.log("api GET workouts running");
     db.Workout.find({})
+        .populate("exercises")
         .sort({ date: -1 })
         .then(dbWorkout => {
             res.json(dbWorkout);
