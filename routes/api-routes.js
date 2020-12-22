@@ -35,7 +35,8 @@ router.put("/api/workouts/:id", (req, res) => {
     console.log("api PUT workouts running");
     console.log(req.params);
     db.Exercise.create(req.body)
-        .then(({ _id }) => db.Workout.findOneAndUpdate({ _id: req.params.id }, { $push: { exercises: _id } }, { new: true }))
+    console.log(req.body.duration)
+        .then(({ _id }) => db.Workout.findOneAndUpdate({ _id: req.params.id }, { $push: { exercises: _id }, $inc: {totalDuration: req.body.duration}}, { new: true }))
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
